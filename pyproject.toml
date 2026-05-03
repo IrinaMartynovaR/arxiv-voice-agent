@@ -1,0 +1,53 @@
+[project]
+name = "arxiv-voice-agent"
+version = "0.1.0"
+description = "Модульный агент для поиска статей arXiv с текстовым и голосовым вводом."
+requires-python = ">=3.11"
+dependencies = [
+    "arxiv>=2.1.3",
+    "fastapi>=0.115.0",
+    "langchain-core>=0.3.0",
+    "langgraph>=0.2.0",
+    "pydantic>=2.8.0",
+    "pydantic-settings>=2.4.0",
+    "python-multipart>=0.0.9",
+    "uvicorn[standard]>=0.30.0",
+]
+
+[project.optional-dependencies]
+asr = [
+    "faster-whisper>=1.0.3",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.13.0",
+    "pytest>=8.3.0",
+    "ruff>=0.8.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.11"
+plugins = []
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+explicit_package_bases = true
+mypy_path = "."
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[[tool.mypy.overrides]]
+module = ["arxiv", "faster_whisper"]
+ignore_missing_imports = true
