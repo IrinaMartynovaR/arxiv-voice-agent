@@ -46,7 +46,7 @@ explicit_package_bases = true
 mypy_path = "."
 
 [tool.pytest.ini_options]
-addopts = ["-p", "no:langsmith"]
+addopts = ["-p", "no:langsmith_plugin"]
 pythonpath = ["."]
 
 [[tool.mypy.overrides]]
